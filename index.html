@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        input {
+            width: 300px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        #qrcode {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>QR Code Generator</h1>
+    <p>Enter a link below to generate its QR code:</p>
+    <input type="text" id="linkInput" placeholder="Enter your link here">
+    <button onclick="generateQRCode()">Generate QR Code</button>
+    <div id="qrcode"></div>
+
+    <script>
+        function generateQRCode() {
+            const link = document.getElementById('linkInput').value;
+            const qrCodeContainer = document.getElementById('qrcode');
+            qrCodeContainer.innerHTML = ''; // Clear previous QR code
+            if (link) {
+                const img = document.createElement('img');
+                img.setAttribute("src", "https://api.qrserver.com/v1/create-qr-code/?data=" + link + "&size=200x200");
+                qrCodeContainer.appendChild(img);
+            } else {
+                alert('Please enter a valid link.');
+            }
+        }
+    </script>
+</body>
+</html>
